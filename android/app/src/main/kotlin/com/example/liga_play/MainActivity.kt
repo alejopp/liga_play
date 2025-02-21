@@ -1,0 +1,5 @@
+package com.example.liga_play
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity()
