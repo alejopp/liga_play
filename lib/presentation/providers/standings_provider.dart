@@ -6,7 +6,7 @@ import 'package:liga_play/presentation/providers/participants_provider.dart';
 import 'package:liga_play/utils/list_utils.dart';
 
 final standingsProvider =
-    StateNotifierProvider<StandingsNotifier, StandingsState>((ref) {
+    StateNotifierProvider.autoDispose<StandingsNotifier, StandingsState>((ref) {
   return StandingsNotifier(StandingsState(teams: []), ref);
 });
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liga_play/data/db/database_config.dart';
+import 'package:liga_play/presentation/providers/participants_provider.dart';
 import 'package:liga_play/presentation/providers/standings_provider.dart';
 import 'package:liga_play/presentation/screens/fixtures_screen.dart';
 import 'package:liga_play/presentation/screens/select_team_screen.dart';
@@ -108,10 +109,13 @@ class _StandingsScreenState extends ConsumerState<StandingsScreen> {
       onCancelButtonPressed: () {
         Navigator.of(context).pop(false);
       },
-      onConfirmButtonPressed: () {
-        DatabaseConfig.deleteData();
-        Navigator.of(context).pop();
-        Navigator.of(context).pushReplacementNamed(SelectTeamScreen.route);
+      onConfirmButtonPressed: () async {
+        await DatabaseConfig.deleteData();
+        ref.invalidate(participantsProvider);
+        if (context.mounted) {
+          Navigator.of(context).pop();
+          Navigator.of(context).pushReplacementNamed(SelectTeamScreen.route);
+        }
       },
     );
   }

@@ -6,7 +6,7 @@ import 'package:liga_play/presentation/providers/participants_provider.dart';
 import 'package:liga_play/utils/list_utils.dart';
 
 final fixtureProvider =
-    StateNotifierProvider<FixtureNotifier, FixtureState>((ref) {
+    StateNotifierProvider.autoDispose<FixtureNotifier, FixtureState>((ref) {
   return FixtureNotifier(FixtureState(), ref);
 });
 
@@ -19,6 +19,7 @@ class FixtureNotifier extends StateNotifier<FixtureState> {
 
   init() {
     final standings = DatabaseConfig.loadStandings();
+    print("init fixtureProvider");
     if (standings.isEmpty) {
       final participants =
           ref.read(participantsProvider.select((value) => value.participants));

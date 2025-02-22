@@ -72,12 +72,16 @@ class DatabaseConfig {
     return participants;
   }
 
-  static deleteData() {
+  static Future<void> deleteData() async {
     try {
-      _realm.write(() {
-        _realm.deleteAll<TeamEntity>();
-        _realm.deleteAll<Participant>();
-        _realm.deleteAll<MatchEntity>();
+      Future(() {
+        _realm.write(
+          () {
+            _realm.deleteAll<TeamEntity>();
+            _realm.deleteAll<Participant>();
+            _realm.deleteAll<MatchEntity>();
+          },
+        );
       });
     } catch (e) {
       print("Error al eliminar datos $e");

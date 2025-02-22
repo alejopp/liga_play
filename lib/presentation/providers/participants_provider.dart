@@ -4,11 +4,12 @@ import 'package:liga_play/data/db/entities/participants_entity.dart';
 
 final participantsProvider =
     StateNotifierProvider<ParticipantsNotifier, ParticipantsState>((ref) {
-  return ParticipantsNotifier(ParticipantsState());
+  return ParticipantsNotifier(ParticipantsState(), ref);
 });
 
 class ParticipantsNotifier extends StateNotifier<ParticipantsState> {
-  ParticipantsNotifier(super._state) {
+  final Ref ref;
+  ParticipantsNotifier(super._state, this.ref) {
     init();
   }
 

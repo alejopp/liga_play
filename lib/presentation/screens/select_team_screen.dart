@@ -113,8 +113,10 @@ class _SelectTeamScreenState extends ConsumerState<SelectTeamScreen> {
   }
 
   Widget _buildTeamsList() {
-    final participants =
-        ref.watch(participantsProvider.select((value) => value.participants));
+    final participants = ref.watch(
+      participantsProvider.select((value) => value.participants),
+    );
+
     return Column(
       children: [
         SizedBox(
